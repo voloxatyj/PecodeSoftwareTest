@@ -8,15 +8,17 @@ import { Navbar } from './components/ui-layouts/Navbar'
 
 export const App = () => {
   return (
-    <div className="container">
-      <Navbar />
-        <Router>
-          <Route exact path="/characters" component={Characters} />
-          <Route exact path="/episodes" component={Episodes} />
-          <Route exact path="/locations" component={Locations} />
-          <Route exact path="/mywatchlist" component={MyWatchList} />
-        </Router>
-    </div>
+    <Router>
+      <div className="container">
+        <Navbar />
+          <Switch>
+            <Route exact path="/characters" component={Characters} />
+            <Route exact path="/episodes" component={Episodes} />
+            <Route exact path="/locations" component={Locations} />
+            <Route exact path="/mywatchlist" component={MyWatchList} />
+          </Switch>
+      </div>
+    </Router>
   );
 }
 

@@ -7,12 +7,9 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { Link } from 'react-router-dom';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import PeopleAltRoundedIcon from '@material-ui/icons/PeopleAltRounded';import { StyledMenuItem, StyledMenu } from './btnstyles'
+import { StyledMenuItem, StyledMenu } from './btnstyles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,30 +96,30 @@ export const Navbar = () => {
 						open={Boolean(anchorEl)}
 						onClose={handleClose}
 					>
-						<StyledMenuItem>
-							<ListItemIcon>
+						<Link to="/characters">
+							<StyledMenuItem>
 								<i className="fas fa-users fa-2x"></i>
-							</ListItemIcon>
-							<ListItemText primary="Characters" />
-						</StyledMenuItem>
-						<StyledMenuItem>
-							<ListItemIcon>
+								<ListItemText primary="Characters" />
+							</StyledMenuItem>
+  					</Link>
+						<Link to="/episodes">
+							<StyledMenuItem>
 								<i className="fas fa-film fa-2x"></i>
-							</ListItemIcon>
-							<ListItemText primary="Episodes" />
-						</StyledMenuItem>
-						<StyledMenuItem>
-							<ListItemIcon>
+								<ListItemText primary="Episodes" />
+							</StyledMenuItem>
+						</Link>
+						<Link to="/locations">
+							<StyledMenuItem>
 								<i className="fas fa-map-marker-alt fa-2x"></i>
-							</ListItemIcon>
-							<ListItemText primary="Locations" />
-						</StyledMenuItem>
-						<StyledMenuItem>
-							<ListItemIcon>
+								<ListItemText primary="Locations" />
+							</StyledMenuItem>
+						</Link>
+						<Link to="/mywatchlist">
+							<StyledMenuItem>
 								<i className="far fa-list-alt fa-2x"></i>
-							</ListItemIcon>
-							<ListItemText primary="MyWatchList" />
-						</StyledMenuItem>
+								<ListItemText primary="MyWatchList" />
+							</StyledMenuItem>
+						</Link>
 					</StyledMenu>
           <Typography className={classes.title} variant="h6" noWrap>
             Rick and Morty test task
