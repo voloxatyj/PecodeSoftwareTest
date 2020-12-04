@@ -5,6 +5,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/Info'
 import { makeStyles } from '@material-ui/core/styles'
+import { useUserData } from '../../context/DataContext';
+import { VIEW_ITEM } from '../../context/types'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
 		height: "100%",
   },
   icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
+		color: 'rgba(255, 255, 255, 0.54)',
+		cursor: "pointer"
 	},
 	title: {
     color: theme.palette.primary,
@@ -35,6 +38,14 @@ const useStyles = makeStyles((theme) => ({
 
 export const Posts = ({ posts, loading }) => {
 	const classes = useStyles();
+	const [state, dispatch] = useUserData()
+
+	const viewItem = item => {
+		dispatch({
+			type: VIEW_ITEM,
+			payload: item
+		})
+	}
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -47,6 +58,7 @@ export const Posts = ({ posts, loading }) => {
 						<GridListTile key={item.id}>
 							{item.image ? <img src={item.image} alt={item.name} /> : null}
 								<GridListTileBar
+									onClick={()=>viewItem(item)}
 									title={item.name}
 									classes={{
 										root: classes.titleBar,

@@ -17,7 +17,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <DataProvider initialState={initialState} reducer={reducer}>
+      <DataProvider state={initialState} reducer={reducer}>
         <App />
       </DataProvider>
     </ThemeProvider>

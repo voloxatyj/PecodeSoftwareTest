@@ -32,13 +32,13 @@ export const Characters = () => {
 		<>
 			<h1 style={{textAlign: "center"}}>The Characters Blog</h1>
 				<Posts posts={currentPosts} loading={loading}/>
-				<div className="footer">
-					<Pagination 
-						postsPerPage={postsPerPage}
-						totalPosts={posts.length}
-						paginate={paginate}
-					/>
-				</div>
+					<div className="footer">
+						<Pagination 
+							postsPerPage={postsPerPage}
+							totalPosts={posts.length}
+							paginate={paginate}
+						/>
+					</div>
 		</>
 	)
 }

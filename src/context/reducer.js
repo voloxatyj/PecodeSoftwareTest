@@ -1,27 +1,23 @@
+import { VIEW_ITEM, STOP_VIEW_ITEM } from './types'
+
 export const initialState =  {
-	characters: [], 
-	episodes: [], 
-	locations: [], 
-	myWatchList: []
+	view: false,
+	item: null
 }
 
 const reducer = (state=initialState, action) => {
 	switch (action.type) {
-		case "LOAD_CHARACTERS":
+		case VIEW_ITEM:
 			return {
 				...state,
-				characters: [state.characters, ...action.payload]
+				view: true,
+				item: action.payload
 			}
-		case "LOAD_EPISODES":
+		case STOP_VIEW_ITEM:
 			return {
 				...state,
-				episodes: [state.episodes, ...action.payload]
+				view: false,
 			}
-		case "LOAD_LOCATIONS":
-			return {
-				...state,
-				locations: [state.locations, ...action.payload]
-			}			
 		default:
 			return state;
 	}

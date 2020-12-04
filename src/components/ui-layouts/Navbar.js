@@ -14,6 +14,7 @@ import { StyledMenuItem, StyledMenu } from './btnstyles'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    position: "relative"
   },
   menuButton: {
     marginRight: theme.spacing(2),
