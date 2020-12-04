@@ -4,12 +4,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { DataProvider } from './context/DataContext';
 import reducer, { initialState } from './context/reducer'
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Patrick Hand',
+      'cursive',
+    ].join(','),
+  },});
 
 ReactDOM.render(
   <React.StrictMode>
-    <DataProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </DataProvider>
+    <ThemeProvider theme={theme}>
+      <DataProvider initialState={initialState} reducer={reducer}>
+        <App />
+      </DataProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

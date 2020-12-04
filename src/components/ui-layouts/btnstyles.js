@@ -32,6 +32,8 @@ export const StyledMenuItem = withStyles((theme) => ({
         color: theme.palette.common.white,
       },
     },
+    display: "inline-flex",
+    maxWidth: "100%"
   },
 }))(MenuItem);
 
