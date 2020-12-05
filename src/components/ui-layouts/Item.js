@@ -19,6 +19,16 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.primary.contrastText,
 		cursor: "pointer"
 	},
+	others: {
+  color: "#fff",
+  width: "70%",
+  cursor: "pointer",
+  margin: "20% 35%",
+  display: "grid",
+  maxWidth: "600px",
+  boxShadow: "rgba(0, 0, 0, 0.7) 0px 5px 8px 0px, rgba(0, 0, 0, 0.7) 0px 7px 20px 20px",
+  backgroundColor: "#3f51b5",
+	},
   media: {
     height: 400,
 	},
@@ -38,7 +48,7 @@ export const Item = ({item}) => {
 	}
 	return(
 		<div className="modal-content" onClick={(event)=>closeCard(event)}>
-			<Card className={classes.root} ref={card}>
+			<Card className={item.image ? classes.root : classes.others} ref={card}>
 				{item.image ? <CardMedia
 					image={item.image}
 					title="Profile image"

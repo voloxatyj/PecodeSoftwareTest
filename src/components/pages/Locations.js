@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react'
 import { useUserData } from './../../context/DataContext'
-import axios from 'axios'
 import { Posts } from '../ui-layouts/Posts'
 import { Pagination } from '../ui-layouts/Pagination'
 
@@ -9,16 +8,18 @@ export const Locations = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage] = useState(25);
-	
-	useMemo(() => {
-		const fetchPosts = async () => {
-			setLoading(true);
-      const res = await axios.get('https://rickandmortyapi.com/api/location/');
-      setPosts(res.data.results);
-      setLoading(false);
-    };
-    fetchPosts();
-  }, []);
+
+	useMemo(async () => {
+		try {
+			setLoading(true)
+			const response = await fetch('https://rickandmortyapi.com/api/location/')
+			const data = await response.json()
+			setPosts(data.results)
+			setLoading(false)
+		} catch (error) {
+			console.log(error)
+		}
+	}, []);
 	
 	// Get current posts
   const indexOfLastPost = currentPage * postsPerPage;

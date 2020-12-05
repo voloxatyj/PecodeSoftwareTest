@@ -53,7 +53,7 @@ export const Posts = ({ posts, loading }) => {
 
   return (
    	<div className={classes.root}>
-			<GridList cellHeight={posts[0].image?300:100} cols={posts[0].image?2:1} spacing={50} className={classes.gridList}>
+			<GridList cellHeight={posts[0].image?300:100} cols={posts[0].image?2:4} spacing={50} className={classes.gridList}>
 				{posts.map(item => (
 						<GridListTile key={item.id}>
 							{item.image ? <img src={item.image} alt={item.name} /> : null}
