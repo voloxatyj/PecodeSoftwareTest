@@ -1,8 +1,11 @@
-import { VIEW_ITEM, STOP_VIEW_ITEM } from './types'
+import { VIEW_ITEM, STOP_VIEW_ITEM, SET_ITEMS, SET_FILTER, SET_REFRESH } from './types'
 
 export const initialState =  {
 	view: false,
-	item: null
+	item: null,
+	items: [],
+	data: [],
+	type: null
 }
 
 const reducer = (state=initialState, action) => {
@@ -17,6 +20,18 @@ const reducer = (state=initialState, action) => {
 			return {
 				...state,
 				view: false,
+			}
+		case SET_ITEMS:
+			return {
+				...state,
+				items: [...action.payload.items],
+				data: [...action.payload.items],
+				type: action.payload.type
+			}
+		case SET_FILTER:
+			return {
+				...state,
+				items: action.payload
 			}
 		default:
 			return state;

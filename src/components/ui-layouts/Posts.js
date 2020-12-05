@@ -49,7 +49,9 @@ export const Posts = ({ posts, loading }) => {
 
   if (loading) {
     return <h2>Loading...</h2>;
-  }
+  } else if(posts.length === 0) {
+		return <h2>No item can find...</h2>;
+	}
 
   return (
    	<div className={classes.root}>
@@ -58,14 +60,13 @@ export const Posts = ({ posts, loading }) => {
 						<GridListTile key={item.id}>
 							{item.image ? <img src={item.image} alt={item.name} /> : null}
 								<GridListTileBar
-									onClick={()=>viewItem(item)}
 									title={item.name}
 									classes={{
 										root: classes.titleBar,
 										title: classes.title,
 									}}
 									actionIcon={
-										<IconButton aria-label={`info about ${item.name}`} className={classes.icon}>
+										<IconButton aria-label={`info about ${item.name}`} className={classes.icon} onClick={()=>viewItem(item)}>
 											<InfoIcon />
 										</IconButton>
 									}

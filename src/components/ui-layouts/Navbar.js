@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useUserData } from '../../context/DataContext'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 import ListItemText from '@material-ui/core/ListItemText';
 import { StyledMenuItem, StyledMenu } from './btnstyles'
+import { SET_FILTER } from '../../context/types'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,6 +69,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Navbar = () => {
+  const [{type}, dispatch] = useUserData()
+  const storage = JSON.parse(localStorage.getItem(`${type}`))
+  const [data, setData] = useState(storage)
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
 
@@ -77,6 +82,29 @@ export const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleChange = (event, type) => {
+    switch (type) {
+      case 'characters':
+        dispatch({
+          type: SET_FILTER,
+          payload: data.filter(item => item.species.toLowerCase().startsWith(event.target.value) || item.status.toLowerCase().startsWith(event.target.value) || item.gender.toLowerCase().startsWith(event.target.value))
+        })
+        break;
+      case 'episodes':
+        dispatch({
+          type: SET_FILTER,
+          payload: data.filter(item => item.name.toLowerCase().startsWith(event.target.value) || item.air_date.toLowerCase().startsWith(event.target.value))
+        })
+      case 'locations':
+        dispatch({
+          type: SET_FILTER,
+          payload: data.filter(item => item.name.toLowerCase().startsWith(event.target.value) || item.type.toLowerCase().startsWith(event.target.value) || item.dimension.toLowerCase().startsWith(event.target.value))
+        })
+      default:
+        break;
+    }
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -136,6 +164,7 @@ export const Navbar = () => {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(event) => handleChange(event,type)}
             />
           </div>
         </Toolbar>
