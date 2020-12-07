@@ -92,11 +92,12 @@ export const Navbar = () => {
     setAnchorEl(null);
   };
 
-  const setPage = type => {
+  const setPage = (type, event) => {
     dispatch({
       type: SET_TYPE,
       payload: type
     })
+    setAnchorEl(null)
   }
 
   const handleChange = (event, type) => {

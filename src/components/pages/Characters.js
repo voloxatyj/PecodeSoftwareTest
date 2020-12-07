@@ -13,7 +13,7 @@ export const Characters = () => {
 	useMemo(async () => {
 		try {
 			setLoading(true)
-			const response = await fetch('https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/')
+			const response = await fetch('https://rickandmortyapi.com/api/character/')
 			const data = await response.json()
 			await dispatch({
 				type: SET_ITEMS, 
