@@ -16,11 +16,13 @@
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
+  "homepage": "https://voloxatyj.github.io/PecodeSoftwareTest",
   "scripts": {
     "start": "sudo sysctl -w fs.inotify.max_user_watches=100000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build" 
   },
   "eslintConfig": {
     "extends": [

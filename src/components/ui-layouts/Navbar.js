@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useUserData } from '../../context/DataContext'
+import { useHistory } from 'react-router-dom'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,7 +12,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 import ListItemText from '@material-ui/core/ListItemText';
 import { StyledMenuItem, StyledMenu } from './btnstyles'
-import { SET_FILTER } from '../../context/types'
+import { SET_FILTER, SET_TYPE } from '../../context/types'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,11 +70,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const Navbar = () => {
-  const [{type}, dispatch] = useUserData()
+  let [{type, items}, dispatch] = useUserData()
+  const history = useHistory()
+  if(type === null){
+    type = history.location.pathname.slice(1)
+  }
   const storage = JSON.parse(localStorage.getItem(`${type}`))
-  const [data, setData] = useState(storage)
+  const [data, setData] = useState(items)
 	const classes = useStyles();
-	const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  
+  useEffect(()=>{
+    setData(storage)
+  },[type])
 
   const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -82,6 +91,14 @@ export const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const setPage = type => {
+    dispatch({
+      type: SET_TYPE,
+      payload: type
+    })
+  }
+
   const handleChange = (event, type) => {
     switch (type) {
       case 'characters':
@@ -95,11 +112,19 @@ export const Navbar = () => {
           type: SET_FILTER,
           payload: data.filter(item => item.name.toLowerCase().startsWith(event.target.value) || item.air_date.toLowerCase().startsWith(event.target.value))
         })
+        break;
       case 'locations':
         dispatch({
           type: SET_FILTER,
           payload: data.filter(item => item.name.toLowerCase().startsWith(event.target.value) || item.type.toLowerCase().startsWith(event.target.value) || item.dimension.toLowerCase().startsWith(event.target.value))
         })
+        break;
+      case 'mywatchlist':
+        dispatch({
+          type: SET_FILTER,
+          payload: {data: data.filter(item => item.name.toLowerCase().startsWith(event.target.value)), type: 'mywatchlist'}
+        })
+        break;
       default:
         break;
     }
@@ -125,25 +150,25 @@ export const Navbar = () => {
 						open={Boolean(anchorEl)}
 						onClose={handleClose}
 					>
-						<Link to="/characters">
+						<Link to="/characters" onClick={()=>setPage("characters")}>
 							<StyledMenuItem>
 								<i className="fas fa-users fa-2x"></i>
 								<ListItemText primary="Characters" />
 							</StyledMenuItem>
   					</Link>
-						<Link to="/episodes">
+						<Link to="/episodes" onClick={()=>setPage("episodes")}>
 							<StyledMenuItem>
 								<i className="fas fa-film fa-2x"></i>
 								<ListItemText primary="Episodes" />
 							</StyledMenuItem>
 						</Link>
-						<Link to="/locations">
+						<Link to="/locations" onClick={()=>setPage("locations")}>
 							<StyledMenuItem>
 								<i className="fas fa-map-marker-alt fa-2x"></i>
 								<ListItemText primary="Locations" />
 							</StyledMenuItem>
 						</Link>
-						<Link to="/mywatchlist">
+						<Link to="/mywatchlist" onClick={()=>setPage("mywatchlist")}>
 							<StyledMenuItem>
 								<i className="far fa-list-alt fa-2x"></i>
 								<ListItemText primary="MyWatchList" />
