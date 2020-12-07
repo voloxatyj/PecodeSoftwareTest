@@ -19,7 +19,7 @@
   "homepage": ".",
   "scripts": {
     "start": "sudo sysctl -w fs.inotify.max_user_watches=100000 && react-scripts start",
-    "build": "react-scripts build",
+    "build": "set \"CI=false\" && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build" 
