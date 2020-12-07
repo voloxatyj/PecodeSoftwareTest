@@ -16,7 +16,7 @@
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
-  "homepage": "https://voloxatyj.github.io/PecodeSoftwareTest",
+  "homepage": ".",
   "scripts": {
     "start": "sudo sysctl -w fs.inotify.max_user_watches=100000 && react-scripts start",
     "build": "react-scripts build",
