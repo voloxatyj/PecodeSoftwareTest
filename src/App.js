@@ -18,10 +18,10 @@ export const App = () => {
         <Navbar />
           {view && <Item item={item} />}
           <Switch>
-            <Route exact path={process.env.PUBLIC_URL + "/characters"} component={Characters} />
-            <Route exact path={process.env.PUBLIC_URL + "/episodes"} component={Episodes} />
-            <Route exact path={process.env.PUBLIC_URL + "/locations"} component={Locations} />
-            <Route exact path={process.env.PUBLIC_URL + "/mywatchlist"} component={MyWatchList} />
+            <Route exact path="/characters" component={Characters} />
+            <Route exact path="/episodes" component={Episodes} />
+            <Route exact path="/locations" component={Locations} />
+            <Route exact path="/mywatchlist" component={MyWatchList} />
           </Switch>
       </div>
     </Router>
