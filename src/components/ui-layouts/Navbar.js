@@ -13,11 +13,15 @@ import { Link } from 'react-router-dom';
 import ListItemText from '@material-ui/core/ListItemText';
 import { StyledMenuItem, StyledMenu } from './btnstyles'
 import { SET_FILTER, SET_TYPE } from '../../context/types'
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
+import ExploreIcon from '@material-ui/icons/Explore';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    position: "relative"
+    position: "relative",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -153,25 +157,25 @@ export const Navbar = () => {
 					>
 						<Link to="/characters" onClick={()=>setPage("characters")}>
 							<StyledMenuItem>
-								<i className="fas fa-users fa-2x"></i>
+								<SupervisedUserCircleIcon fontSize="large" />
 								<ListItemText primary="Characters" />
 							</StyledMenuItem>
   					</Link>
 						<Link to="/episodes" onClick={()=>setPage("episodes")}>
 							<StyledMenuItem>
-								<i className="fas fa-film fa-2x"></i>
+								<PhotoLibraryIcon fontSize="large" />
 								<ListItemText primary="Episodes" />
 							</StyledMenuItem>
 						</Link>
 						<Link to="/locations" onClick={()=>setPage("locations")}>
 							<StyledMenuItem>
-								<i className="fas fa-map-marker-alt fa-2x"></i>
+								<ExploreIcon fontSize="large" />
 								<ListItemText primary="Locations" />
 							</StyledMenuItem>
 						</Link>
 						<Link to="/mywatchlist" onClick={()=>setPage("mywatchlist")}>
 							<StyledMenuItem>
-								<i className="far fa-list-alt fa-2x"></i>
+								<PlaylistAddCheckIcon fontSize="large" />
 								<ListItemText primary="MyWatchList" />
 							</StyledMenuItem>
 						</Link>
